@@ -1,9 +1,15 @@
+<script setup lang="ts">
+import WireFrame from "~/components/WireFrames/WireFrame.vue";
+</script>
+
 <template>
   <v-app>
-    <v-main>
+    <!-- メインコンテンツ -->
+    <WireFrame>
       <slot />
-    </v-main>
+    </WireFrame>
 
+    <!-- フッター -->
     <AppFooter />
   </v-app>
 </template>

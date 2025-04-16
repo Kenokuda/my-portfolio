@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   ssr: false,
 
@@ -11,17 +11,17 @@ export default defineNuxtConfig({
   },
 
   build: {
-    transpile: ['vuetify'],
+    transpile: ["vuetify"],
   },
 
   vite: {
     ssr: {
-      noExternal: ['vuetify'],
+      noExternal: ["vuetify"],
     },
   },
 
-  css: [],
-  modules: ['@nuxt/fonts', 'vuetify-nuxt-module', '@nuxt/eslint'],
+  css: ["~/styles/index.scss"],
+  modules: ["@nuxt/fonts", "vuetify-nuxt-module", "@nuxt/eslint"],
 
   vuetify: {
     moduleOptions: {
@@ -39,8 +39,8 @@ export default defineNuxtConfig({
       // /* If customizing sass global variables ($utilities, $reset, $color-pack, $body-font-family, etc) */
       // disableVuetifyStyles: true,
       styles: {
-        configFile: 'assets/settings.scss',
+        configFile: "assets/settings.scss",
       },
     },
   },
-})
+});
