@@ -123,7 +123,6 @@ export default defineVuetifyConfiguration({
     VBtn: {
       color: "primary",
       variant: "flat",
-      rounded: "pill",
     },
     // 他のコンポーネントもここに追記可！
   },

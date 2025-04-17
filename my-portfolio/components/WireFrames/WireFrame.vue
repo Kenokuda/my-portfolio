@@ -1,18 +1,17 @@
 <template>
   <v-layout class="rounded rounded-md border">
     <!-- アプリケーションバー -->
-    <v-app-bar scroll-behavior="elevate">
-      <v-app-bar-nav-icon />
+    <v-app-bar elevation="0">
+      <v-btn class="drawer-btn" icon @click="toggleDrawer">
+        <div :class="['icon-wrapper', { rotated: drawer }]">
+          <v-icon>
+            {{ drawer ? "mdi-close" : "mdi-menu" }}
+          </v-icon>
+        </div></v-btn
+      >
+
       <v-toolbar-title>私のポートフォリオ</v-toolbar-title>
       <v-spacer />
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
 
       <!-- テーマトグルボタン -->
       <v-btn icon @click="toggleTheme" :title="themeLabel">
@@ -21,7 +20,12 @@
     </v-app-bar>
 
     <!-- ナビゲーションドロワー -->
-    <v-navigation-drawer>
+    <v-navigation-drawer v-model="drawer" app>
+      <template #prepend>
+        <v-list-item>
+          <v-list-item-title class="text-h6">メニュー</v-list-item-title>
+        </v-list-item>
+      </template>
       <v-list nav>
         <v-list-item title="Navigation drawer" link></v-list-item>
       </v-list>
@@ -70,6 +74,12 @@ watch(
   },
   { immediate: true }
 );
+
+/**---------ナビゲーションドロワー--------- */
+const drawer = ref(false);
+const toggleDrawer = () => {
+  drawer.value = !drawer.value;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -78,5 +88,15 @@ watch(
   font-size: 1.5rem;
   font-weight: bold;
   color: rgb(var(--v-theme-onSurface));
+}
+
+// ドロワーの開閉アニメーション
+.icon-wrapper {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.icon-wrapper.rotated {
+  transform: rotate(90deg);
 }
 </style>
