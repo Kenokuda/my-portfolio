@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const useVisiterStore = defineStore("visiter", {
   state: () => ({
-    yourName: "さすらいの訪問者",
+    yourName: "",
     isNicknameDialogAlreadyShown: false,
   }),
   getters: {

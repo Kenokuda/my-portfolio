@@ -14,7 +14,7 @@
           v-tooltip:top="skill.tooltip"
           :color="skill.color"
         >
-          <v-card-title class="mb-8">
+          <v-card-title>
             <v-icon class="me-2">{{ skill.icon }}</v-icon>
             <span class="text-h5 font-weight-bold">{{ skill.name }}</span>
           </v-card-title>

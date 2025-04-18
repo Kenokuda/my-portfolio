@@ -115,10 +115,14 @@ export default defineVuetifyConfiguration({
   defaults: {
     VCard: {
       elevation: 1,
-      class: "pa-4",
+      class: "pa-4 text-on-surface",
       maxWidth: 600,
       color: "surfaceContainer",
       rounded: "lg",
+    },
+    VCardTitle: {
+      class: "text-h5 font-weight-bold mb-4",
+      color: "onSurface",
     },
     VBtn: {
       color: "primary",

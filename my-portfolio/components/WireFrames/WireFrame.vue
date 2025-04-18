@@ -10,7 +10,6 @@
         </div></v-btn
       >
 
-      <v-toolbar-title>私のポートフォリオ</v-toolbar-title>
       <v-spacer />
 
       <!-- テーマトグルボタン -->

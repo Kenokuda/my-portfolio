@@ -2,14 +2,16 @@
   <!-- 名前を呼ぶ -->
   <div v-if="yourName" class="greeting">
     <h2>
-      ようこそ、<span class="your-name">{{ yourName }}</span
+      <span>{{
+        isAllPageVisited ? "全部見てくれてありがとう！" : "ようこそ、"
+      }}</span
+      ><span class="your-name">{{ yourName }}</span
       >さん！
     </h2>
   </div>
 
-  <!-- パンくずリスト -->
-  <v-breadcrumbs v-if="!isHome" :items="['Foo', 'Bar', 'Fizz']"></v-breadcrumbs>
-  <h1>{{ pageTitle }}</h1>
+  <!-- タイトル -->
+  <h1 class="page-title">{{ pageTitle }}</h1>
   <h3 class="sub-title">{{ subTitle }}</h3>
 
   <!-- メインのコンテンツが入ります -->
@@ -26,6 +28,7 @@ import FooterBtn from "./FooterBtn.vue";
 
 // propsの定義
 type Props = {
+  isAllPageVisited?: boolean;
   yourName?: string;
   pageTitle: string;
   subTitle?: string;
@@ -52,6 +55,7 @@ defineProps<Props>();
     }
   }
 }
+
 .sub-title {
   color: rgb(var(--v-theme-secondary));
 }
