@@ -101,13 +101,6 @@ const toggleDrawer = () => {
 </script>
 
 <style lang="scss" scoped>
-// ツールバー タイトル
-.v-toolbar-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: rgb(var(--v-theme-onSurface));
-}
-
 // ドロワーの開閉アニメーション
 .icon-wrapper {
   display: inline-block;
@@ -123,6 +116,11 @@ const toggleDrawer = () => {
 .list-item {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
+  .v-list-item-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: rgb(var(--v-theme-onSurface));
+  }
 }
 
 // 選択中のドロワーアイテム

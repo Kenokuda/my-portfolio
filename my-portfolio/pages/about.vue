@@ -2,6 +2,8 @@
   <ContentsFrame
     page-title="私について"
     sub-title="私のこれまでの経験を紹介します。"
+    prev-path="/"
+    next-path="/skills"
   >
     <!-- タイムライン -->
     <v-timeline>
@@ -92,5 +94,13 @@ const timelineEvents = [
 // タイムラインのスタイル
 .v-timeline {
   margin-bottom: 4rem;
+}
+
+.v-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  }
 }
 </style>

@@ -27,7 +27,7 @@
         cols="12"
         lg="4"
         md="6"
-        sm="12"
+        sm="6"
         v-for="(page, index) in page.pages"
         :key="index"
       >
@@ -168,7 +168,7 @@ const btnVariant = computed(() => (index: number) => {
 
 /**--------実績のスナックバー---------- */
 const isSnackbarVisible = ref(false); // スナックバーの表示状態
-const snackbarTimeout = ref(3000); // スナックバーの表示時間
+const snackbarTimeout = ref(5000); // スナックバーの表示時間
 
 // 全部見たら表示
 onMounted(() => {
@@ -207,7 +207,8 @@ onMounted(() => {
   background-color: rgb(var(--v-theme-surfaceContainerHighest));
   position: relative;
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   }
 
   // コンプリートアイコン

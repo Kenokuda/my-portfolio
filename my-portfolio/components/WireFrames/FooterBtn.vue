@@ -2,14 +2,17 @@
   <!-- 戻るボタン -->
   <v-row class="footer-btn">
     <v-col>
-      <v-btn class="mt-4" color="primary" :to="{ path: '/' }" variant="text">
+      <v-btn class="mt-4" color="primary" :to="prevPath" variant="text">
         <span class="prev-text"><v-icon>$prev</v-icon>戻る</span>
       </v-btn>
     </v-col>
 
     <v-col class="text-end">
-      <v-btn class="mt-4" color="primary" :to="{ path: '/' }" variant="text">
-        <span class="next-text">次のページ<v-icon>$next</v-icon></span>
+      <v-btn class="mt-4" color="primary" :to="nextPath" variant="text">
+        <span class="next-text"
+          >{{ nextPath === "/" ? "ホーム" : "次のページ"
+          }}<v-icon>$next</v-icon></span
+        >
       </v-btn>
     </v-col>
   </v-row>

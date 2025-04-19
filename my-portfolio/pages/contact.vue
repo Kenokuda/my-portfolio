@@ -2,6 +2,8 @@
   <ContentsFrame
     page-title="連絡"
     sub-title="ご連絡は以下の方法でお願いします。"
+    prev-path="/blog"
+    next-path="/"
   >
     <v-container>
       <v-row justify="center">

@@ -7,8 +7,8 @@ export const usePageStore = defineStore(
     /** state */
     const pages = ref([
       { title: "私について", to: "/about", visited: false },
-      { title: "技術一覧", to: "/skills", visited: false },
-      { title: "プロジェクト一覧", to: "/projects", visited: false },
+      { title: "技術", to: "/skills", visited: false },
+      { title: "作品", to: "/works", visited: false },
       { title: "ブログ", to: "/blog", visited: false },
       { title: "連絡", to: "/contact", visited: false },
     ]);

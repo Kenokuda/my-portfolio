@@ -1,5 +1,10 @@
 <template>
-  <ContentsFrame page-title="技術一覧" sub-title="私が使える技術を紹介します。">
+  <ContentsFrame
+    page-title="技術"
+    sub-title="私が使える技術を紹介します。"
+    prev-path="/about"
+    next-path="/works"
+  >
     <!-- 技術一覧 -->
     <v-row class="mb-5">
       <v-col
