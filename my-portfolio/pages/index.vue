@@ -1,7 +1,6 @@
 <template>
   <ContentsFrame
-    :is-all-page-visited="allPagesVisited"
-    :your-name="getYourName"
+    :is-all-page-visited="page.isAllVisited"
     pageTitle="ホーム"
     subTitle="私のポートフォリオへようこそ！"
     is-home
@@ -12,10 +11,10 @@
         <div class="d-flex justify-end align-center">
           <v-progress-linear
             color="primary"
-            :model-value="calculateAchieveRate"
+            :model-value="page.achieveRatePercentage"
           ></v-progress-linear>
-          <div class="ms-4 text-h6">{{ showAchieveRate }}</div>
-          <div class="ms-4 text-h6" v-if="allPagesVisited">
+          <div class="ms-4 text-h6">{{ page.achieveRateDisplay }}</div>
+          <div class="ms-4 text-h6" v-if="page.isAllVisited">
             <v-icon color="success">mdi-star-circle</v-icon>
           </div>
         </div>
@@ -29,14 +28,14 @@
         lg="4"
         md="6"
         sm="12"
-        v-for="(page, index) in pages"
+        v-for="(page, index) in page.pages"
         :key="index"
       >
         <v-card @click="goToPage(page.to)">
           <div v-if="page.visited" class="complete-icon">
             <v-icon>$complete</v-icon>
           </div>
-          <v-card-title>{{ page.name }}</v-card-title>
+          <v-card-title>{{ page.title }}</v-card-title>
           <v-card-actions
             ><v-btn :variant="btnVariant(index)" :to="page.to"
               >表示</v-btn
@@ -82,16 +81,36 @@
         </v-form>
       </v-card>
     </v-dialog>
+
+    <!-- 見てくれてありがとうスナックバー -->
+    <v-snackbar
+      variant="tonal"
+      location="top right"
+      :timeout="snackbarTimeout"
+      v-model="isSnackbarVisible"
+    >
+      <h2 class="d-flex align-center pa-1">
+        <v-icon color="primary" class="mr-2">mdi-trophy-award</v-icon>
+        <div>{{ "実績：全部見た人" }}</div>
+      </h2>
+    </v-snackbar>
   </ContentsFrame>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
 import ContentsFrame from "~/components/WireFrames/ContentsFrame.vue";
 import { useVisiterStore } from "~/stores/visiter";
+import { usePageStore } from "@/stores/page";
+import { storeToRefs } from "pinia";
 
+/**-------ストアのインスタンス化------- */
+
+// ページの達成率に関するストア
+const page = usePageStore();
+const { isAllVisited } = storeToRefs(page);
+
+// 訪問者に関するストア
 const visiter = useVisiterStore();
-const { getYourName } = storeToRefs(visiter);
 
 /**--------最初のダイアログ------------*/
 const dialog = ref(false);
@@ -119,7 +138,7 @@ const okBtn = () => {
   // ダイアログを閉じる
   dialog.value = false;
   // ダイアログを表示済みにする
-  visiter.setIsNicknameDialogAlreadyShown(true);
+  visiter.setNicknameDialogAlreadyShown();
 };
 
 // いやかも、、、ボタンを押した時の処理
@@ -131,7 +150,7 @@ const cancelBtn = () => {
   // ダイアログを閉じる
   dialog.value = false;
   // ダイアログを表示済みにする
-  visiter.setIsNicknameDialogAlreadyShown(true);
+  visiter.setNicknameDialogAlreadyShown();
 };
 
 /**----------ルーティングする関数------------ */
@@ -141,40 +160,22 @@ const goToPage = (to: string) => {
 };
 
 /**--------ページ情報の定義---------- */
-// ページ情報
-const pages = ref([
-  { name: "私について", to: "/about", visited: false },
-  { name: "技術", to: "/skills", visited: false },
-  { name: "プロジェクト一覧", to: "/projects", visited: false },
-  { name: "ブログ", to: "/blog", visited: true },
-  { name: "連絡", to: "/contact", visited: true },
-]);
-
-// 共通: 総ページ数と訪問済み数
-const pageStats = computed(() => {
-  const total = pages.value.length;
-  const visited = pages.value.filter((page) => page.visited).length;
-  return { total, visited };
-});
 
 // ボタンのバリアントを決定する関数
 const btnVariant = computed(() => (index: number) => {
-  return pages.value[index].visited ? "outlined" : "flat";
+  return page.pages[index].visited ? "outlined" : "flat";
 });
 
-// ページ周回の達成率（%）
-const calculateAchieveRate = computed(() => {
-  return (pageStats.value.visited / pageStats.value.total) * 100;
-});
+/**--------実績のスナックバー---------- */
+const isSnackbarVisible = ref(false); // スナックバーの表示状態
+const snackbarTimeout = ref(3000); // スナックバーの表示時間
 
-// ページ周回の達成率（表示用）
-const showAchieveRate = computed(() => {
-  return `${pageStats.value.visited} / ${pageStats.value.total}`;
-});
-
-// 全てのページが周回されたかどうか
-const allPagesVisited = computed(() => {
-  return pageStats.value.visited === pageStats.value.total;
+// 全部見たら表示
+onMounted(() => {
+  if (isAllVisited.value && !visiter.getIsSnackbarAlreadyShown) {
+    isSnackbarVisible.value = true;
+    visiter.setSnackbarAlreadyShown();
+  }
 });
 /**-------遷移時の処理------------- */
 onMounted(() => {
@@ -224,5 +225,10 @@ onMounted(() => {
   font-size: 1.5rem;
   font-weight: bold;
   color: rgb(var(--v-theme-onSurface));
+}
+
+// 名前部分のスタイル
+.your-name {
+  color: rgb(var(--v-theme-primary));
 }
 </style>

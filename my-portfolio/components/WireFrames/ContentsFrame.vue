@@ -1,11 +1,14 @@
 <template>
   <!-- 名前を呼ぶ -->
-  <div v-if="yourName" class="greeting">
+  <div
+    v-if="isHome"
+    :class="['greeting', { 'greeting--all': isAllPageVisited }]"
+  >
     <h2>
       <span>{{
         isAllPageVisited ? "全部見てくれてありがとう！" : "ようこそ、"
       }}</span
-      ><span class="your-name">{{ yourName }}</span
+      ><span class="your-name">{{ getYourName }}</span
       >さん！
     </h2>
   </div>
@@ -25,18 +28,35 @@
 
 <script setup lang="ts">
 import FooterBtn from "./FooterBtn.vue";
+import { usePageStore } from "@/stores/page";
+import { storeToRefs } from "pinia";
+import { useVisiterStore } from "~/stores/visiter";
+
+/**-------インスタンス化------- */
+// pageのストアをインスタンス化
+const page = usePageStore();
+
+// 訪問者に関するストア
+const visiter = useVisiterStore();
+const { getYourName } = storeToRefs(visiter);
+
+// ページの達成率を更新
+const router = useRouter();
+router.afterEach(() => {
+  // 目的のページに移動したときに visited にする
+  page.markVisited(props.pageTitle);
+});
 
 // propsの定義
 type Props = {
   isAllPageVisited?: boolean;
-  yourName?: string;
   pageTitle: string;
   subTitle?: string;
   prevPath?: string;
   nextPath?: string;
   isHome?: boolean;
 };
-defineProps<Props>();
+const props = defineProps<Props>();
 </script>
 
 <style scoped lang="scss">
@@ -54,13 +74,29 @@ defineProps<Props>();
       text-decoration: underline;
     }
   }
+
+  // 全てのページを訪問した時のスタイル
+  &--all {
+    font-size: 1.8rem;
+    background-color: rgb(var(--v-theme-primaryContaienr));
+  }
 }
 
+// タイトル
+.page-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgb(var(--v-theme-onSurface));
+  margin-bottom: 1rem;
+}
+
+// サブタイトル
 .sub-title {
   color: rgb(var(--v-theme-secondary));
 }
 
+// コンテンツのラッパー
 .contents-wrap {
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 </style>

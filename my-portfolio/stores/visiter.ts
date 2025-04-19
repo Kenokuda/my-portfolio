@@ -1,29 +1,52 @@
 import { defineStore } from "pinia";
+import { ref, computed } from "vue";
 
-export const useVisiterStore = defineStore("visiter", {
-  state: () => ({
-    yourName: "",
-    isNicknameDialogAlreadyShown: false,
-  }),
-  getters: {
-    // 訪問者のあだ名を取得する
-    getYourName: (state) => state.yourName,
-    // 訪問者のあだ名が設定済みかどうかを取得する
-    getIsNicknameDialogAlreadyShown: (state) =>
-      state.isNicknameDialogAlreadyShown,
-  },
-  actions: {
-    // 訪問者のあだ名を設定する
-    setYourName(name: string) {
-      this.yourName = name;
-    },
+export const useVisiterStore = defineStore(
+  "visiter",
+  () => {
+    // --- state ---
+    const yourName = ref("さすらいの訪問者");
+    const isNicknameDialogAlreadyShown = ref(false);
+    const isSnackbarAlreadyShown = ref(false);
 
-    // 訪問者のあだ名が設定済みかどうかを設定する
-    setIsNicknameDialogAlreadyShown(isShown: boolean) {
-      this.isNicknameDialogAlreadyShown = isShown;
+    // --- getters (computed) ---
+    const getYourName = computed(() => yourName.value);
+    const getIsNicknameDialogAlreadyShown = computed(
+      () => isNicknameDialogAlreadyShown.value
+    );
+    const getIsSnackbarAlreadyShown = computed(
+      () => isSnackbarAlreadyShown.value
+    );
+
+    // --- actions ---
+    const setYourName = (name: string) => {
+      yourName.value = name;
+    };
+
+    const setNicknameDialogAlreadyShown = () => {
+      isNicknameDialogAlreadyShown.value = true;
+    };
+
+    const setSnackbarAlreadyShown = () => {
+      isSnackbarAlreadyShown.value = true;
+    };
+
+    return {
+      yourName,
+      isNicknameDialogAlreadyShown,
+      isSnackbarAlreadyShown,
+      getYourName,
+      getIsNicknameDialogAlreadyShown,
+      getIsSnackbarAlreadyShown,
+      setYourName,
+      setNicknameDialogAlreadyShown,
+      setSnackbarAlreadyShown,
+    };
+  },
+  {
+    /** persist */
+    persist: {
+      storage: sessionStorage,
     },
-  },
-  persist: {
-    storage: sessionStorage,
-  },
-});
+  }
+);

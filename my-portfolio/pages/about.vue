@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import ContentsFrame from "~/components/WireFrames/ContentsFrame.vue";
 
-// タイムラインのイベントデータ
+/**--------タイムラインのイベントデータ------- */
 const timelineEvents = [
   {
     date: "2000年",

@@ -20,13 +20,28 @@
 
     <!-- ナビゲーションドロワー -->
     <v-navigation-drawer v-model="drawer" app>
-      <template #prepend>
-        <v-list-item>
-          <v-list-item-title class="text-h6">メニュー</v-list-item-title>
-        </v-list-item>
-      </template>
       <v-list nav>
-        <v-list-item title="Navigation drawer" link></v-list-item>
+        <v-list-item
+          to="/"
+          link
+          :class="[{ 'active-list-item': $route.path === '/' }, 'list-item']"
+        >
+          <v-list-item-title class="font-weight-bold"
+            >ホーム</v-list-item-title
+          ></v-list-item
+        >
+
+        <template v-for="p in page.pages" :key="page.to">
+          <v-list-item
+            :to="p.to"
+            link
+            :class="[{ 'active-list-item': $route.path === p.to }, 'list-item']"
+          >
+            <v-list-item-title class="font-weight-bold">{{
+              p.title
+            }}</v-list-item-title></v-list-item
+          >
+        </template>
       </v-list>
     </v-navigation-drawer>
 
@@ -41,6 +56,10 @@
 
 <script setup lang="ts">
 import { useTheme } from "vuetify";
+import { usePageStore } from "~/stores/page";
+
+/**-------ストアのインスタンス化--------- */
+const page = usePageStore();
 
 /**-------Vuetifyのテーマコントロール--------------- */
 // インスタンス化
@@ -95,7 +114,19 @@ const toggleDrawer = () => {
   transition: transform 0.3s ease;
 }
 
+// ドロワー開閉時のアイコン回転
 .icon-wrapper.rotated {
   transform: rotate(90deg);
+}
+
+// ドロワーのリストアイテム
+.list-item {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+// 選択中のドロワーアイテム
+.active-list-item {
+  background-color: rgb(var(--v-theme-secondaryContainer));
 }
 </style>
