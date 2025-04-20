@@ -51,10 +51,10 @@ Vue.js と Vuetify を使用しており、モダンで使いやすいデザイ�
 
 1. リポジトリをクローンします。
 
-   ```bash
+```bash
    git clone https://github.com/Kenokuda/my-portfolio.git
 
-   ```
+```
 
 2. 必要な依存関係をインストールします。
 
