@@ -5,9 +5,6 @@ export default defineNuxtConfig({
   ssr: false,
 
   // github pages deployment
-  app: {
-    baseURL: "/my-portfolio/",
-  },
   nitro: {
     preset: "static",
   },
