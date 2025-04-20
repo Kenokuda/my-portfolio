@@ -8,8 +8,5 @@ import WireFrame from "~/components/WireFrames/WireFrame.vue";
     <WireFrame>
       <slot />
     </WireFrame>
-
-    <!-- フッター -->
-    <AppFooter />
   </v-app>
 </template>

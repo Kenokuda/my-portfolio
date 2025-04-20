@@ -105,7 +105,7 @@ const projects = [
     title: "ポートフォリオサイト",
     description:
       "自分のポートフォリオサイトを作成しました。Vue.jsとVuetifyを使用。今見てるサイトです！",
-    link: "https://example.com/portfolio",
+    link: "https://kenokuda.github.io/my-portfolio/",
   },
 ];
 

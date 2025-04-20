@@ -12,10 +12,10 @@
 
       <v-spacer />
 
-      <!-- テーマトグルボタン -->
-      <v-btn icon @click="toggleLocale" title="言語切り替え">
+      <!-- TODO:言語トグルボタン -->
+      <!-- <v-btn icon @click="toggleLocale" title="言語切り替え">
         <v-icon>mdi-translate</v-icon>
-      </v-btn>
+      </v-btn> -->
 
       <!-- テーマトグルボタン -->
       <v-btn icon @click="toggleTheme" :title="themeLabel">
