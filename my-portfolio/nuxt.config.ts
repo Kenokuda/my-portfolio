@@ -4,6 +4,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
+  // github pages deployment
+  app: {
+    baseURL: "/<my-portfolio>/",
+  },
+  nitro: {
+    preset: "static",
+  },
+
   // when enabling ssr option you need to disable inlineStyles and maybe devLogs
   features: {
     inlineStyles: false,
