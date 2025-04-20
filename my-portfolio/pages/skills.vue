@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import ContentsFrame from "~/components/WireFrames/ContentsFrame.vue";
+import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
 
 // 技術一覧のデータ
 const skills = [

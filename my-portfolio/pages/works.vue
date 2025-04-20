@@ -64,8 +64,8 @@
 </template>
 
 <script setup lang="ts">
-import ContentsFrame from "~/components/WireFrames/ContentsFrame.vue";
-import { useVisiterStore } from "~/stores/visiter";
+import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
+import { useVisiterStore } from "@/stores/visiter";
 // 画像のインポート
 import mobileOrderImage from "@/assets/images/mainimg_mobileOrder.png";
 import nuriTshirtImage from "@/assets/images/IMG_5925.jpg";

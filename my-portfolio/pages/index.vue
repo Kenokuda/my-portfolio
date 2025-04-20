@@ -98,8 +98,8 @@
 </template>
 
 <script setup lang="ts">
-import ContentsFrame from "~/components/WireFrames/ContentsFrame.vue";
-import { useVisiterStore } from "~/stores/visiter";
+import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
+import { useVisiterStore } from "@/stores/visiter";
 import { usePageStore } from "@/stores/page";
 import { storeToRefs } from "pinia";
 
