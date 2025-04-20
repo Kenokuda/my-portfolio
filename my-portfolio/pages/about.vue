@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import ContentsFrame from "~/components/WireFrames/ContentsFrame.vue";
+import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
 
 /**--------タイムラインのイベントデータ------- */
 const timelineEvents = [

@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import ContentsFrame from "~/components/WireFrames/ContentsFrame.vue";
+import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
 
 // ブログデータ
 const blogs = [
