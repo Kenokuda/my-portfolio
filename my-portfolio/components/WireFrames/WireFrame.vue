@@ -13,6 +13,11 @@
       <v-spacer />
 
       <!-- テーマトグルボタン -->
+      <v-btn icon @click="toggleLocale" title="言語切り替え">
+        <v-icon>mdi-translate</v-icon>
+      </v-btn>
+
+      <!-- テーマトグルボタン -->
       <v-btn icon @click="toggleTheme" :title="themeLabel">
         <v-icon>{{ themeIcon }}</v-icon>
       </v-btn>
@@ -22,9 +27,12 @@
     <v-navigation-drawer v-model="drawer" app>
       <v-list nav>
         <v-list-item
-          to="/"
+          :to="pagePath.HOME"
           link
-          :class="[{ 'active-list-item': $route.path === '/' }, 'list-item']"
+          :class="[
+            { 'active-list-item': $route.path === pagePath.HOME },
+            'list-item',
+          ]"
         >
           <v-list-item-title class="font-weight-bold"
             >ホーム</v-list-item-title
@@ -56,10 +64,18 @@
 
 <script setup lang="ts">
 import { useTheme } from "vuetify";
+import { pagePath } from "~/constants/path";
 import { usePageStore } from "~/stores/page";
 
 /**-------ストアのインスタンス化--------- */
 const page = usePageStore();
+
+/**-----言語切り替え----------- */
+const { locale, setLocale } = useI18n();
+const toggleLocale = () => {
+  const newLocale = locale.value === "ja" ? "en" : "ja";
+  setLocale(newLocale);
+};
 
 /**-------Vuetifyのテーマコントロール--------------- */
 // インスタンス化
