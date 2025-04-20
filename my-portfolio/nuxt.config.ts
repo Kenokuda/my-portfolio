@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
+  app: {
+    baseURL: "/my-portfolio/", // GitHub Pages のサブパスに合わせる
+  },
+
   // github pages deployment
   nitro: {
     preset: "static",
