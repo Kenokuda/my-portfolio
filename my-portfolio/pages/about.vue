@@ -2,8 +2,7 @@
   <ContentsFrame
     page-title="私について"
     sub-title="私のこれまでの経験を紹介します。"
-    prev-path="/"
-    next-path="/skills"
+    :next-path="pagePath.SKILLS"
   >
     <!-- タイムライン -->
     <v-timeline>
@@ -28,6 +27,7 @@
 
 <script setup lang="ts">
 import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
+import { pagePath } from "~/constants/path";
 
 /**--------タイムラインのイベントデータ------- */
 const timelineEvents = [

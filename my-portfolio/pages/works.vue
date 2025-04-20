@@ -2,8 +2,7 @@
   <ContentsFrame
     page-title="作品"
     :sub-title="`${visiter.getYourName}さんに、私が作ってきたものを紹介します。`"
-    prev-path="/skills"
-    next-path="/blog"
+    :next-path="pagePath.BLOG"
   >
     <v-container>
       <div class="works-container">
@@ -74,6 +73,7 @@ import treeImage from "@/assets/images/IMG_7543.png";
 import lizardImage from "@/assets/images/IMG_7621.jpg";
 import catAloneImage from "@/assets/images/IMG_7622.jpg";
 import catSleepImage from "@/assets/images/IMG_7623.jpg";
+import { pagePath } from "~/constants/path";
 
 // ストアの初期化
 const visiter = useVisiterStore();

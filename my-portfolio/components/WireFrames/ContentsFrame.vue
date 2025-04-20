@@ -23,7 +23,7 @@
   </div>
 
   <!-- フッター -->
-  <FooterBtn v-if="!isHome" :prev-path="prevPath" :next-path="nextPath" />
+  <FooterBtn v-if="!isHome" :next-path="nextPath" />
 </template>
 
 <script setup lang="ts">
@@ -52,7 +52,6 @@ type Props = {
   isAllPageVisited?: boolean;
   pageTitle: string;
   subTitle?: string;
-  prevPath?: string;
   nextPath?: string;
   isHome?: boolean;
 };

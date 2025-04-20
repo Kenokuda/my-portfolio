@@ -2,8 +2,7 @@
   <ContentsFrame
     page-title="技術"
     sub-title="私が使える技術を紹介します。"
-    prev-path="/about"
-    next-path="/works"
+    :next-path="pagePath.WORKS"
   >
     <!-- 技術一覧 -->
     <v-row class="mb-5">
@@ -34,6 +33,7 @@
 
 <script setup lang="ts">
 import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
+import { pagePath } from "~/constants/path";
 
 // 技術一覧のデータ
 const skills = [

@@ -2,8 +2,7 @@
   <ContentsFrame
     page-title="ブログ"
     sub-title="私のブログです。かなり自由に書いています。"
-    prev-path="/works"
-    next-path="/contact"
+    :next-path="pagePath.CONTACT"
   >
     <v-container>
       <v-row>
@@ -54,6 +53,7 @@
 
 <script setup lang="ts">
 import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
+import { pagePath } from "~/constants/path";
 
 // ブログデータ
 const blogs = [

@@ -30,7 +30,12 @@ export default defineNuxtConfig({
   },
 
   css: ["~/styles/index.scss"],
-  modules: ["@nuxt/fonts", "vuetify-nuxt-module", "@nuxt/eslint"],
+  modules: [
+    "@nuxt/fonts",
+    "vuetify-nuxt-module",
+    "@nuxt/eslint",
+    "@nuxtjs/i18n",
+  ],
 
   vuetify: {
     moduleOptions: {
@@ -43,6 +48,24 @@ export default defineNuxtConfig({
         prefersColorSchemeOptions: {
           useBrowserThemeOnly: false,
         },
+      },
+
+      i18n: {
+        locales: [
+          {
+            code: "en",
+            name: "English",
+            file: "en.ts",
+          },
+          {
+            code: "ja",
+            name: "日本語",
+            file: "ja.ts",
+          },
+        ],
+        lazy: true,
+        langDir: "locales",
+        defaultLocale: "ja",
       },
 
       // /* If customizing sass global variables ($utilities, $reset, $color-pack, $body-font-family, etc) */
