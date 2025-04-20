@@ -57,10 +57,16 @@ Vue.js と Vuetify を使用しており、モダンで使いやすいデザイ�
    ```
 
 2. 必要な依存関係をインストールします。
+
+```bash
    npm install
+```
 
 3. 開発サーバーを起動します。
+
+```bash
    npm run dev
+```
 
 4. ブラウザで http://localhost:3000 を開きます。
 
