@@ -54,7 +54,16 @@
             sm="6"
             md="4"
           >
-            <v-img :src="photo.src" class="works-image"></v-img>
+            <v-img :src="photo.src" :lazy-src="photo.src" class="works-image">
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-progress-circular
+                    indeterminate
+                    color="grey lighten-5"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
           </v-col>
         </v-row>
       </div>
