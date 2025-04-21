@@ -82,6 +82,7 @@
 
     <!-- 見てくれてありがとうスナックバー -->
     <v-snackbar
+      v-if="!isMobile"
       variant="tonal"
       location="top right"
       :timeout="snackbarTimeout"
@@ -167,6 +168,7 @@ const btnVariant = computed(() => (index: number) => {
 /**--------実績のスナックバー---------- */
 const isSnackbarVisible = ref(false); // スナックバーの表示状態
 const snackbarTimeout = ref(5000); // スナックバーの表示時間
+const isMobile = ref(false); // スマホ判定
 
 // 全部見たら表示
 onMounted(() => {
@@ -174,6 +176,20 @@ onMounted(() => {
     isSnackbarVisible.value = true;
     visiter.setSnackbarAlreadyShown();
   }
+});
+
+onMounted(() => {
+  const updateIsMobile = () => {
+    isMobile.value = window.innerWidth <= 768;
+  };
+
+  updateIsMobile();
+  window.addEventListener("resize", updateIsMobile);
+
+  // クリーンアップ
+  onUnmounted(() => {
+    window.removeEventListener("resize", updateIsMobile);
+  });
 });
 /**-------遷移時の処理------------- */
 onMounted(() => {
@@ -242,7 +258,7 @@ onMounted(() => {
   }
 
   .v-card-subtitle {
-    opacity: 0.8;
+    opacity: 1;
     color: rgb(var(--v-theme-onSurface));
   }
 
