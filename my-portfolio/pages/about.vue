@@ -5,37 +5,71 @@
     :next-path="pagePath.SKILLS"
   >
     <!-- タイムライン -->
-    <v-timeline>
-      <v-timeline-item
-        v-for="(event, index) in timelineEvents"
-        :key="index"
-        :dot-color="event.color"
-      >
-        <template #opposite>
-          <strong>{{ event.date }}</strong>
-        </template>
-        <v-card>
-          <v-card-title class="text-h5 font-weight-bold">{{
-            event.title
-          }}</v-card-title>
-          <v-card-text class="mt-5">{{ event.description }}</v-card-text>
-        </v-card>
-      </v-timeline-item>
-    </v-timeline>
+    <v-container>
+      <div v-if="isMobile">
+        <!-- スマホ用タイムライン -->
+        <v-row>
+          <v-col
+            v-for="(event, index) in timelineEvents"
+            :key="index"
+            cols="12"
+          >
+            <!-- アイコン -->
+            <div v-if="index !== 0" class="d-flex justify-center mb-5">
+              <v-icon :color="event.color">mdi-arrow-down</v-icon>
+            </div>
+
+            <v-card class="mobile-timeline-card" outlined>
+              <v-card-title class="text-h6 font-weight-bold">
+                {{ event.date }}
+              </v-card-title>
+              <v-card-subtitle class="text-subtitle-1">
+                {{ event.title }}
+              </v-card-subtitle>
+              <v-card-text>
+                <p>{{ event.description }}</p>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+
+      <div v-else>
+        <!-- PC/タブレット用タイムライン -->
+        <v-timeline>
+          <v-timeline-item
+            v-for="(event, index) in timelineEvents"
+            :key="index"
+            :dot-color="event.color"
+          >
+            <template #opposite>
+              <strong>{{ event.date }}</strong>
+            </template>
+            <v-card>
+              <v-card-title class="text-h5 font-weight-bold">
+                {{ event.title }}
+              </v-card-title>
+              <v-card-text class="mt-5">{{ event.description }}</v-card-text>
+            </v-card>
+          </v-timeline-item>
+        </v-timeline>
+      </div>
+    </v-container>
   </ContentsFrame>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
 import ContentsFrame from "@/components/WireFrames/ContentsFrame.vue";
 import { pagePath } from "~/constants/path";
 
-/**--------タイムラインのイベントデータ------- */
+// タイムラインデータ
 const timelineEvents = [
   {
     date: "2000年",
     title: "誕生",
     description:
-      "ピアノの先生とシステムエンジニアの家に生まれました。音楽が好きで、デザインや芸術は密かに好きでした。",
+      "ピアノの先生とシステムエンジニアの両親の家に生まれました。音楽が好きで、デザインや芸術は密かに好きでした。",
     color: "secondary",
   },
   {
@@ -88,10 +122,27 @@ const timelineEvents = [
     color: "secondary",
   },
 ];
+
+// スマホ判定
+const isMobile = ref(false);
+
+onMounted(() => {
+  const updateIsMobile = () => {
+    isMobile.value = window.innerWidth <= 768;
+  };
+
+  updateIsMobile();
+  window.addEventListener("resize", updateIsMobile);
+
+  // クリーンアップ
+  onUnmounted(() => {
+    window.removeEventListener("resize", updateIsMobile);
+  });
+});
 </script>
 
 <style lang="scss" scoped>
-// タイムラインのスタイル
+/* タイムラインのスタイル */
 .v-timeline {
   margin-bottom: 4rem;
 }

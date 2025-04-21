@@ -31,7 +31,7 @@
         v-for="(page, index) in page.pages"
         :key="index"
       >
-        <v-card @click="goToPage(page.to)">
+        <v-card class="go-card" @click="goToPage(page.to)">
           <div v-if="page.visited" class="complete-icon">
             <v-icon>$complete</v-icon>
           </div>
@@ -46,18 +46,16 @@
     </v-row>
 
     <!-- お名前を聞くダイアログ -->
-    <v-dialog v-model="dialog" max-width="600px">
+    <v-dialog v-model="dialog" max-width="600px" persistent>
       <v-card>
-        <v-card-title
-          >ようこそ！<br />あなたの「あだ名」を教えてください</v-card-title
-        >
+        <v-card-title>ようこそ！</v-card-title
+        ><v-card-subtitle>あなたの「あだ名」を教えてください</v-card-subtitle>
 
         <v-form ref="form" v-model="formIsValid" @submit.prevent="onSubmit">
           <v-card-text>
             <v-text-field
               v-model="name"
               label="あだ名"
-              outlined
               clearable
               :rules="nameRules"
               maxlength="10"
@@ -201,6 +199,7 @@ onMounted(() => {
 .v-progress-linear {
   width: 50%;
 }
+
 // カードコンポーネント
 .v-card {
   transition: transform 0.3s ease, background-color 0.3s ease;
@@ -209,6 +208,14 @@ onMounted(() => {
   &:hover {
     transform: scale(1.05);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  // カードコンポーネントのタイトル
+  .v-card-title {
+    margin-bottom: 6rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: rgb(var(--v-theme-onSurface));
   }
 
   // コンプリートアイコン
@@ -220,16 +227,27 @@ onMounted(() => {
     color: rgb(var(--v-theme-tertiary));
   }
 }
-// カードコンポーネントのタイトル
-.v-card-title {
-  margin-bottom: 8px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: rgb(var(--v-theme-onSurface));
-}
 
 // 名前部分のスタイル
 .your-name {
   color: rgb(var(--v-theme-primary));
+}
+
+// ダイアログのスタイル
+.v-dialog {
+  .v-card-title {
+    font-size: 10rem;
+    font-weight: bold;
+    color: rgb(var(--v-theme-onSurface));
+  }
+
+  .v-card-subtitle {
+    opacity: 0.8;
+    color: rgb(var(--v-theme-onSurface));
+  }
+
+  .v-text-field {
+    margin-top: 0.15rem;
+  }
 }
 </style>
