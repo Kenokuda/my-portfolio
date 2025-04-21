@@ -46,18 +46,16 @@
     </v-row>
 
     <!-- お名前を聞くダイアログ -->
-    <v-dialog v-model="dialog" max-width="600px">
+    <v-dialog v-model="dialog" max-width="600px" persistent>
       <v-card>
-        <v-card-title
-          >ようこそ！<br />あなたの「あだ名」を教えてください</v-card-title
-        >
+        <v-card-title>ようこそ！</v-card-title
+        ><v-card-subtitle>あなたの「あだ名」を教えてください</v-card-subtitle>
 
         <v-form ref="form" v-model="formIsValid" @submit.prevent="onSubmit">
           <v-card-text>
             <v-text-field
               v-model="name"
               label="あだ名"
-              outlined
               clearable
               :rules="nameRules"
               maxlength="10"
@@ -223,7 +221,7 @@ onMounted(() => {
 // カードコンポーネントのタイトル
 .v-card-title {
   margin-bottom: 8px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: rgb(var(--v-theme-onSurface));
 }
@@ -231,5 +229,21 @@ onMounted(() => {
 // 名前部分のスタイル
 .your-name {
   color: rgb(var(--v-theme-primary));
+}
+
+// ダイアログのスタイル
+.v-dialog {
+  .v-card {
+    background-color: rgb(var(--v-theme-tertiaryContainer));
+  }
+
+  .v-card-subtitle {
+    opacity: 0.8;
+    color: rgb(var(--v-theme-onSurface));
+  }
+
+  .v-text-field {
+    margin-top: 0.15rem;
+  }
 }
 </style>
