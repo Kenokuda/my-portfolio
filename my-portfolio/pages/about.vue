@@ -36,7 +36,7 @@
 
       <div v-else>
         <!-- PC/タブレット用タイムライン -->
-        <v-timeline>
+        <v-timeline :side="timelineSide">
           <v-timeline-item
             v-for="(event, index) in timelineEvents"
             :key="index"
@@ -123,20 +123,29 @@ const timelineEvents = [
   },
 ];
 
-// スマホ判定
+// スマホ・iPad判定
 const isMobile = ref(false);
+const isTablet = ref(false);
+const timelineSide = computed(() => {
+  if (isTablet.value) {
+    // ipadの場合は右側に表示
+    return "end";
+  }
+});
 
 onMounted(() => {
-  const updateIsMobile = () => {
-    isMobile.value = window.innerWidth <= 768;
+  const updateDeviceType = () => {
+    const width = window.innerWidth;
+    isMobile.value = width <= 768;
+    isTablet.value = width > 768 && width <= 1024;
   };
 
-  updateIsMobile();
-  window.addEventListener("resize", updateIsMobile);
+  updateDeviceType();
+  window.addEventListener("resize", updateDeviceType);
 
   // クリーンアップ
   onUnmounted(() => {
-    window.removeEventListener("resize", updateIsMobile);
+    window.removeEventListener("resize", updateDeviceType);
   });
 });
 </script>
