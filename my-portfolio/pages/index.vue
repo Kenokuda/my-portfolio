@@ -31,7 +31,7 @@
         v-for="(page, index) in page.pages"
         :key="index"
       >
-        <v-card @click="goToPage(page.to)">
+        <v-card class="go-card" @click="goToPage(page.to)">
           <div v-if="page.visited" class="complete-icon">
             <v-icon>$complete</v-icon>
           </div>
@@ -199,6 +199,7 @@ onMounted(() => {
 .v-progress-linear {
   width: 50%;
 }
+
 // カードコンポーネント
 .v-card {
   transition: transform 0.3s ease, background-color 0.3s ease;
@@ -207,6 +208,14 @@ onMounted(() => {
   &:hover {
     transform: scale(1.05);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  // カードコンポーネントのタイトル
+  .v-card-title {
+    margin-bottom: 6rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: rgb(var(--v-theme-onSurface));
   }
 
   // コンプリートアイコン
@@ -218,13 +227,6 @@ onMounted(() => {
     color: rgb(var(--v-theme-tertiary));
   }
 }
-// カードコンポーネントのタイトル
-.v-card-title {
-  margin-bottom: 8px;
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: rgb(var(--v-theme-onSurface));
-}
 
 // 名前部分のスタイル
 .your-name {
@@ -233,8 +235,10 @@ onMounted(() => {
 
 // ダイアログのスタイル
 .v-dialog {
-  .v-card {
-    background-color: rgb(var(--v-theme-tertiaryContainer));
+  .v-card-title {
+    font-size: 10rem;
+    font-weight: bold;
+    color: rgb(var(--v-theme-onSurface));
   }
 
   .v-card-subtitle {
