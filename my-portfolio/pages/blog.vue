@@ -27,7 +27,7 @@
                 position: static;
                 visibility: visible;
               "
-            ></iframe>
+            />
             <v-card-title class="text-h6 font-weight-bold">
               {{ blog.title }}
             </v-card-title>
@@ -58,24 +58,60 @@ import { pagePath } from "~/constants/path";
 // ブログデータ
 const blogs = [
   {
-    title: "新卒社会人が教えるVue.js",
-    description: "Vue.jsやCSS、Typescriptなどについて解説した記事です。",
-    embededLink: "https://note.com/embed/notes/ncb637b2551ed",
-    toLink: "https://note.com/ready_snipe9119/n/ncb637b2551ed",
+    title: "「プライバシーに配慮した」生い立ち紹介",
+    description: "極力プライバシーに配慮した内容で生い立ちを紹介します。",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/nb0258ed354b0?sub_rt=share_sb",
+    toLink: "https://note.com/ready_snipe9119/n/nb0258ed354b0?sub_rt=share_sb",
   },
   {
-    title: "新卒社会人が教えるwebデザイン",
-    description:
-      "Material DesignやVuetify、Webデザインの歴史を解説した記事です。",
-    embededLink: "https://note.com/embed/notes/n04c2a16a515b",
-    toLink: "https://note.com/ready_snipe9119/n/n04c2a16a515b",
+    title: "面白い少女漫画１",
+    description: "少女漫画を書きたくて。",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/n2991ae05943a?sub_rt=share_sb",
+    toLink: "https://note.com/ready_snipe9119/n/n2991ae05943a?sub_rt=share_sb",
   },
   {
-    title: "京都アートフェア2025に行ってきた！",
-    description:
-      "「京都アートフェア2025」に行ってきた感想や、絵画の見方を解説した記事です。",
-    embededLink: "https://note.com/embed/notes/n9cfb611fadea",
-    toLink: "https://note.com/ready_snipe9119/n/n9cfb611fadea",
+    title: "拝啓、セイントクラウス",
+    description: "サンタさんにお手紙を書きました。",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/n34d09a9fcb7a?sub_rt=share_sb",
+    toLink: "https://note.com/ready_snipe9119/n/n34d09a9fcb7a?sub_rt=share_sb",
+  },
+  {
+    title: "風呂キャンセル界隈について",
+    description: "風呂キャンセル界隈についての考察。",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/nddd1a4ff9852?sub_rt=share_sb",
+    toLink: "https://note.com/ready_snipe9119/n/nddd1a4ff9852?sub_rt=share_sb",
+  },
+  {
+    title: "和歌山とポーランドに行ってきた",
+    description: "和歌山とはなんだろうか",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/nebb61cb66d83?sub_rt=share_pw",
+    toLink: "https://note.com/ready_snipe9119/n/nebb61cb66d83?sub_rt=share_pw",
+  },
+  {
+    title: "速弾きぽく",
+    description: "速弾きしてます。",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/nc7737013426d?sub_rt=share_pw",
+    toLink: "https://note.com/ready_snipe9119/n/nc7737013426d?sub_rt=share_pw",
+  },
+  {
+    title: "速弾きぽく",
+    description: "速弾きしてます。",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/nc7737013426d?sub_rt=share_pw",
+    toLink: "https://note.com/ready_snipe9119/n/nc7737013426d?sub_rt=share_pw",
+  },
+  {
+    title: "more than your 家賃？",
+    description: "ある音楽グループの歌詞について考えてみました。",
+    embededLink:
+      "https://note.com/ready_snipe9119/n/n4be79c8d36db?sub_rt=share_pw",
+    toLink: "https://note.com/ready_snipe9119/n/n4be79c8d36db?sub_rt=share_pw",
   },
 ];
 </script>

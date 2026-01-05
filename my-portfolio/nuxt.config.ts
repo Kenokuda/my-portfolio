@@ -11,6 +11,13 @@ export default defineNuxtConfig({
   // github pages deployment
   nitro: {
     preset: "static",
+    routeRules: {
+      "/**": {
+        headers: {
+          "X-Frame-Options": "SAMEORIGIN",
+        },
+      },
+    },
   },
 
   // when enabling ssr option you need to disable inlineStyles and maybe devLogs

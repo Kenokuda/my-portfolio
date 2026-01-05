@@ -20,7 +20,7 @@
                 :src="project.image"
                 :alt="project.title"
                 class="works-image"
-              ></v-img>
+              />
               <v-card-title class="mt-4 text-h5 font-weight-bold">
                 {{ project.title }}
               </v-card-title>
@@ -48,22 +48,45 @@
         <h2 class="works-title">写真</h2>
         <v-row>
           <v-col
-            v-for="(photo, index) in photos"
-            :key="index"
+            v-for="photo in photos"
+            :key="photo.id"
             cols="12"
             sm="6"
             md="4"
           >
             <v-img :src="photo.src" :lazy-src="photo.src" class="works-image">
-              <template v-slot:placeholder>
+              <template #placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                  ></v-progress-circular>
+                  <v-progress-circular indeterminate color="grey lighten-5" />
                 </v-row>
               </template>
             </v-img>
+          </v-col>
+        </v-row>
+      </div>
+
+      <!-- 動画セクション -->
+      <div class="works-container photo">
+        <h2 class="works-title">出演</h2>
+        <v-row>
+          <v-col
+            v-for="movie in movies"
+            :key="movie.id"
+            cols="12"
+            sm="6"
+            md="6"
+          >
+            <v-card class="video-card" outlined>
+              <v-responsive :aspect-ratio="16 / 9">
+                <iframe
+                  :src="getEmbedUrl(movie.src)"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  class="youtube-iframe"
+                />
+              </v-responsive>
+            </v-card>
           </v-col>
         </v-row>
       </div>
@@ -118,6 +141,41 @@ const photos = [
   { id: 5, src: catAloneImage },
   { id: 6, src: catSleepImage },
 ];
+
+// 動画
+const movies = [
+  { id: 1, src: "https://youtu.be/zcdHIP3jwAY?si=9u9iUFlE_dEhJeSC" },
+  { id: 2, src: "https://youtu.be/m40HhTFAdhI?si=iuwu7qJPx9ajTnjN" },
+];
+
+// YouTubeのURLを埋め込み用URLに変換する関数
+const getEmbedUrl = (url: string): string => {
+  // YouTubeのURLから動画IDを抽出
+  let videoId = "";
+
+  // youtu.be形式のURL (例: https://youtu.be/zcdHIP3jwAY?si=...)
+  const shortUrlMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortUrlMatch && shortUrlMatch[1]) {
+    videoId = shortUrlMatch[1];
+  } else {
+    // youtube.com形式のURL (例: https://www.youtube.com/watch?v=...)
+    const watchMatch = url.match(/[?&]v=([^&]+)/);
+    if (watchMatch && watchMatch[1]) {
+      videoId = watchMatch[1];
+    } else {
+      // youtube.com/embed形式のURLはそのまま返す
+      if (url.includes("youtube.com/embed/")) {
+        return url;
+      }
+    }
+  }
+
+  if (videoId) {
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  return url; // 変換できない場合は元のURLを返す
+};
 </script>
 
 <style lang="scss" scoped>
@@ -146,6 +204,18 @@ const photos = [
 
   .v-card-text {
     line-height: 1.8;
+  }
+}
+
+.video-card {
+  overflow: hidden;
+
+  .youtube-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 </style>
