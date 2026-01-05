@@ -5,6 +5,28 @@
     :next-path="pagePath.CONTACT"
   >
     <v-container>
+      <v-row justify="center">
+        <!-- ブログ -->
+        <v-col cols="12" sm="6" md="4">
+          <v-card class="pa-4 contact-card">
+            <v-card-title>
+              <v-icon class="me-2" color="primary">mdi-note</v-icon>
+              <span class="text-h5 font-weight-bold">note</span>
+            </v-card-title>
+            <v-card-actions>
+              <v-btn
+                color="primary"
+                outlined
+                href="https://note.com/ready_snipe9119"
+                target="_blank"
+              >
+                noteを開く
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+
       <v-row>
         <v-col
           v-for="(blog, index) in blogs"
@@ -14,20 +36,6 @@
           md="6"
         >
           <v-card class="blog-card" outlined>
-            <iframe
-              class="note-embed"
-              :src="blog.embededLink"
-              style="
-                border: 0;
-                display: block;
-                max-width: 99%;
-                width: 494px;
-                padding: 0px;
-                margin: 10px 0px;
-                position: static;
-                visibility: visible;
-              "
-            />
             <v-card-title class="text-h6 font-weight-bold">
               {{ blog.title }}
             </v-card-title>
